@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Content Security Policy - Webnesday 2023</title>
+  <meta charset="utf-8">
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+
+    .remark-code,
+    .remark-inline-code {
+      font-family: 'Ubuntu Mono';
+    }
+
+    /* Two-column layout */
+    .left-column {
+      color: #777;
+      width: 20%;
+      height: 92%;
+      float: left;
+    }
+
+    .left-column h2:last-of-type,
+    .left-column h3:last-child {
+      color: #000;
+    }
+
+    .right-column {
+      width: 75%;
+      float: right;
+      padding-top: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+class: center, middle
+
+# Content Security Policy
+
+## and Its Side Effects
+
+Webnesday 2023
+
+Roman Ehrbar
+
+
+---
+
+# Agenda
+
+1. Why now?
+2. Why me?
+3. And how?
+
+---
+
+# Why now?
+
+- Increased attacks on swiss companies.
+- Active attacks on our partners.
+- Increased complexity of systems.
+- Large attack surfaces.
+- Risk reduction on critical infrastructure.
+
+???
+
+- Reason: increased attention due to participation in the sanction of russia.
+- Ransomware attacks on Tegut 2021 and Lüchinger & Schmid 2022
+- One person cannot have the total overview over the entire composition.
+- Large attack surfaces:
+  - Deployment of new services; no decommission or lifecycle.
+  - Increasing over time.
+  - Handling of technical debt: keep infrastructure and code up to date.
+
+---
+
+# Why now?
+
+.left-column[
+## Complexity
+]
+.right-column[
+- Does anybody know which services are currently running inside your website?
+- Where are the resources located?
+- Is there an A/B test suite installed? Google Tag Manager?
+- Where do I send user input?
+- Is there any external script loaded?
+- Do you know who is in charge?
+]
+
+---
+
+# Why now?
+
+.left-column[
+## Complexity
+## Attack Surface
+]
+.right-column[
+- Many services running.
+- Few people maintaining it.
+- Even less budget to maintain it properly.
+]
+
+???
+
+- About 3500 domains discovered in company wide survey.
+- TODO: About x % without an identified owner.
+- Project thinking: No budget alotted after go-live in production.
+
+
+---
+
+# Why now?
+
+.left-column[
+## Complexity
+## Attack Surface
+## Compliance
+]
+.right-column[
+- Migros Security Instructions
+- Migros Security Ruleset
+]
+
+???
+
+- Development of a security framework to reduce risks.
+- MSI: Conrete instructions to tackle big issues. Performing initial gap analysis.
+- MSR: Guide to specify how applications should be designed in the first place.
+
+---
+
+# Why me?
+
+- Lead developer for Famigros and Migusto.
+- Since 2017 working for Migros as a software developer.
+- Affinity for security.
+- Full stack expertise.
+
+---
+
+# Why me?
+
+<img src="wantyou.jpg" alt="We need you" style="height: 30vh; float: right;">
+- You know your website best.
+- You have multiple ways to control it.
+
+???
+
+- Ops-Team could also control security, but does not know special factors and requirements.
+
+---
+
+# And how?
+
+```
+Content-Security-Policy: default-src 'self'
+```
+
+```html
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';" />
+```
+
+Threats:
+- Mitigating cross-site scripting
+- Mitigating packet sniffing attacks (e.g. force protocol to https)
+
+---
+
+# Directives
+
+---
+
+# Reporting
+
+???
+
+Results from our run:
+- TODO: x identified domains
+- domain for sale
+- services without an owner
+- services not documented at all
+
+---
+
+# Browser Support
+
+- Every major browser since 10 years ago.
+- Older browsers are another risk:
+  - Missing vendor and security updates.
+  - CSP will be ignored -> no protection of the visitor.
+
+???
+- Older browser without 
+- Some features might be only supported in newer versions.
+- Some features require multiple variants in parallel (e.g. reporting)
+
+---
+
+class: center, middle
+
+<iframe src="https://giphy.com/embed/UqZ4imFIoljlr5O2sM" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/just-do-it-shia-UqZ4imFIoljlr5O2sM">via GIPHY</a></p>
+
+---
+
+# Resources
+
+- [Content Security Policy (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
+
+    </textarea>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+  </script>
+  <script>
+    var slideshow = remark.create();
+  </script>
+</body>
+
+</html>
