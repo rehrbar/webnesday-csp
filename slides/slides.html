@@ -221,7 +221,37 @@ There are many more to explore...
 
 # Directive values
 
-TODO: add some examples
+`none`: Does not allow any resource to load.
+
+`self`: Allow resources from the current origin.
+
+`unsafe-inline`: Allow use of inline resources.
+
+`data:` or `https:`: Allow a specific scheme.
+
+`https://*.example.com:8443/path/to/file.js`
+
+There are many more to explore...
+
+---
+
+# Examples
+
+```
+Content-Security-Policy: default-src 'self' http://example.com;
+                          connect-src 'none';
+```
+
+```
+Content-Security-Policy: default-src 'self';
+  script-src 'report-sample' 'self' www.google-analytics.com/analytics.js
+  'sha256-GA8+DpFnqAM/vwERTpb5zyLUaN5KnOhctfTsqWfhaUA=';
+  style-src 'self' 'unsafe-inline';
+  object-src 'none';
+  base-uri 'self';
+  connect-src 'self' www.google-analytics.com stats.g.doubleclick.net;
+  img-src 'self' *.googleusercontent.com *.gravatar.com;
+```
 
 ---
 
@@ -235,11 +265,37 @@ TODO: add some examples
 - Services might require multiple directives.
 - Browser extensions might break.
 - Using Google Tag Manager requires coordination.
+- Response size increases (only apply to documents).
 - Web Vitals will be much better 😉
+
+???
+
+Detection and Analysis will follow.
 
 ---
 
 # Reporting
+
+```
+Report-To: { "group": "my-reports",
+              "max_age": 10886400,
+              "endpoints": [
+                { "url": "https://endpoint.example.com" }
+              ] }
+Content-Security-Policy: …; report-uri https://endpoint.example.com;
+                            report-to my-reports
+```
+
+The `report-to` directive is only supported by newer browsers.
+Keep `report-uri` to support older browsers as well.
+
+---
+
+# Example Report
+
+---
+
+# Lessons Learned from Reports
 
 ???
 
@@ -248,6 +304,7 @@ Results from our run:
 - domain for sale
 - services without an owner
 - services not documented at all
+- Denial of service possible, as every violation will trigger a request. (TODO: verify this statement)
 
 ---
 
