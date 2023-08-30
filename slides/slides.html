@@ -129,7 +129,7 @@ Roman Ehrbar
 ???
 
 - About 3500 domains discovered in company wide survey.
-- TODO: About x % without an identified owner.
+- For a large number no owner could be identified.
 - Project thinking: No budget allotted after go-live in production.
 
 
@@ -196,8 +196,8 @@ Threats:
 # Documents
 
 - HTML, SVG, XML might be a document.
-
-TODO: improve definition of a document
+- Each has its own ways to load external content.
+- E.g. Stylesheets or Fonts
 
 ---
 
@@ -289,22 +289,55 @@ Content-Security-Policy: …; report-uri https://endpoint.example.com;
 The `report-to` directive is only supported by newer browsers.
 Keep `report-uri` to support older browsers as well.
 
+???
+
+Reporting will only work when set as headers.
+
 ---
 
 # Example Report
+
+```json
+{
+  "csp-report": {
+    "blocked-uri": "https://dummyimage.com/300",
+    "disposition": "enforce",
+    "document-uri": "http://127.0.0.1:4321/",
+    "effective-directive": "img-src",
+    "original-policy": "default-src 'self'; report-uri http://127.0.0.1:4321/csp",
+    "referrer": "",
+    "status-code": 200,
+    "violated-directive": "img-src"
+  }
+}
+```
+
+???
+
+- Reports are useful to identify attacks on clients or misconfiguration.
+- You can pinpoint to the exact location.
+- Format is not standardized and might differ from each browser.
 
 ---
 
 # Lessons Learned from Reports
 
+- 55'214'843 reports -> 4% samples recorded due to rate limiting
+- 428 domains identified
+  - Advertising services
+  - Added services in content production
+- Domain for sale
+- CSP is hard to maintain
+
 ???
 
 Results from our run:
-- TODO: x identified domains
+- Denial of service possible, as every violation will trigger a request.
+- Reporting service using rate limiting to prevent DoS
+- 428 identified domains
 - domain for sale
 - services without an owner
 - services not documented at all
-- Denial of service possible, as every violation will trigger a request. (TODO: verify this statement)
 
 ---
 
@@ -331,6 +364,16 @@ class: center, middle
 # Resources
 
 - [Content Security Policy (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- [CSP Evaluator](https://csp-evaluator.withgoogle.com/)
+- [Brithish Airways Supply Chain Attack 2018](https://www.wired.com/story/british-airways-hack-details/)
+- [Darknet Diaries Episode 52: Magecart](https://darknetdiaries.com/transcript/52/)
+
+???
+
+# Brithish Airways Supply Chain Attack 2018
+- 15 days vulnerable
+- A small updated script, added 22 lines.
+- 380'000 records in the data breach.
 
 
     </textarea>
