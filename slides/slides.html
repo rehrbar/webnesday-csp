@@ -195,9 +195,9 @@ Threats:
 
 # Documents
 
-- HTML, SVG, XML might be a document.
-- Each has its own ways to load external content.
-- E.g. Stylesheets or Fonts
+- HTML, SVG, XML can become a document.
+- Each has its own ways to load external content:
+  - E.g. Stylesheets, images or fonts
 
 ---
 
@@ -231,7 +231,13 @@ There are many more to explore...
 
 `https://*.example.com:8443/path/to/file.js`
 
+`'nonce-*'` or `'sha*-*'`: Allow embedded resources.
+
 There are many more to explore...
+
+???
+
+`nonce` or `sha` might come in handy if external scripts require to place their own HTML elements (e.g. Google Tag Manager)
 
 ---
 
@@ -326,7 +332,7 @@ Reporting will only work when set as headers.
 - 428 domains identified
   - Advertising services
   - Added services in content production
-- Domain for sale
+- Discovered one domain for sale
 - CSP is hard to maintain
 
 ???
@@ -335,7 +341,7 @@ Results from our run:
 - Denial of service possible, as every violation will trigger a request.
 - Reporting service using rate limiting to prevent DoS
 - 428 identified domains
-- domain for sale
+- Discovered one domain for sale
 - services without an owner
 - services not documented at all
 
