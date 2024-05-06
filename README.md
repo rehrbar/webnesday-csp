@@ -1,4 +1,6 @@
-# CSP Demo App
+# Webnesday CSP Demo
+
+Slides are included in `src/pages/slides.html` or with dev-server running http://localhost:4321/slides.
 
 ## 🚀 Project Structure
 
