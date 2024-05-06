@@ -1,0 +1,13 @@
+---
+
+const { csp } = Astro.props;
+---
+<style>
+div > * {
+    display: block;
+}
+</style>
+<div>
+    <strong>Active CSP</strong>
+    <textarea cols="80" rows="5">{csp}</textarea>
+</div>

@@ -1,0 +1,15 @@
+---
+import DemoLayout from '../layouts/DemoLayout.astro';
+import DemoContent from '../components/DemoContent.astro';
+---
+
+<DemoLayout title="CSP Demo" csp="default-src 'none'; connect-src 'self'; frame-src romanehrbar.ch; img-src 'self' dummyimage.com; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; report-to my-reports; report-uri /csp">
+	<h1>Extended</h1>
+	<DemoContent />
+	<ul>
+		<li>Deny by default.</li>
+		<li>Configured everything with specific directive.</li>
+		<li>Every content type is respected.</li>
+		<li>On dev-server, WebSocket for hot-reload is blocked.</li>
+	</ul>
+</DemoLayout>

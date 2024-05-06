@@ -1,0 +1,13 @@
+---
+import DemoLayout from '../layouts/DemoLayout.astro';
+import DemoContent from '../components/DemoContent.astro';
+---
+
+<DemoLayout title="Default none" csp="default-src 'none'; report-to my-reports; report-uri /csp">
+	<h1>Default none</h1>
+	<DemoContent />
+	<ul>
+		<li>No embedded content</li>
+		<li>All styles are gone</li>
+	</ul>
+</DemoLayout>
